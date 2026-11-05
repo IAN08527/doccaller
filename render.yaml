@@ -24,3 +24,4 @@ services:
         sync: false
       - key: JOBS_ENABLED
         value: "true"
+
