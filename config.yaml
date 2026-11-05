@@ -1,0 +1,43 @@
+clinic:
+  name: "Smile Care Dental Clinic"
+  address: "Shop 4, Linking Road, Bandra West, Mumbai 400050"
+  timezone: "Asia/Kolkata"
+  phone_country_code: "+91"
+  languages: ["en", "hi", "mr"]
+
+hours:
+  open: "09:00"
+  close: "20:00"
+  closed_days: ["Sunday"]
+  slot_windows:
+    - "10:00-12:00"
+    - "12:00-14:00"
+    - "16:00-18:00"
+    - "18:00-20:00"
+
+services:
+  - "Scaling & Cleaning"
+  - "Pain Check-up"
+  - "Root Canal Treatment"
+  - "Tooth Extraction"
+  - "Braces / Orthodontics"
+  - "Crowns & Bridges"
+  - "Other"
+
+emergency:
+  on_call_number: "+91 98200 12345"
+  hospital: "Holy Family Hospital, Bandra West, Mumbai"
+
+privacy_notice: "We use your details only to arrange this appointment. Reply STOP to opt out."
+
+retention_days: 90
+daily_outreach_cap: 150
+
+missed_call:
+  dedupe_hours: 12
+  shared_secret: ""
+
+followup:
+  max_rounds: 3
+
+no_reply_sweep_hours: 2

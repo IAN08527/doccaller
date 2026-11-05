@@ -1,0 +1,389 @@
+{
+  "reference_date": "2026-11-03",
+  "cases": [
+    {
+      "id": "en-01",
+      "language": "en",
+      "text": "Hi, I'm Rahul Verma. I need a root canal on 4 Nov in the morning.",
+      "expected": {
+        "patient_name": "Rahul Verma",
+        "service_needed": "Root Canal Treatment",
+        "preferred_date": "2026-11-04",
+        "preferred_time_window": "10:00-12:00",
+        "is_emergency": false
+      }
+    },
+    {
+      "id": "en-02",
+      "language": "en",
+      "text": "Priya Sharma here. I need cleaning tomorrow afternoon.",
+      "expected": {
+        "patient_name": "Priya Sharma",
+        "service_needed": "Scaling & Cleaning",
+        "preferred_date": "2026-11-04",
+        "preferred_time_window": "12:00-14:00",
+        "is_emergency": false
+      }
+    },
+    {
+      "id": "en-03",
+      "language": "en",
+      "text": "Amit Patel, tooth extraction on 5 Nov, 10 am to 12 pm.",
+      "expected": {
+        "patient_name": "Amit Patel",
+        "service_needed": "Tooth Extraction",
+        "preferred_date": "2026-11-05",
+        "preferred_time_window": "10:00-12:00",
+        "is_emergency": false
+      }
+    },
+    {
+      "id": "en-04",
+      "language": "en",
+      "text": "I need braces, Friday evening please.",
+      "expected": {
+        "patient_name": null,
+        "service_needed": "Braces / Orthodontics",
+        "preferred_date": "2026-11-06",
+        "preferred_time_window": "18:00-20:00",
+        "is_emergency": false
+      }
+    },
+    {
+      "id": "en-05",
+      "language": "en",
+      "text": "Neha Kulkarni here, I have tooth pain and can come today.",
+      "expected": {
+        "patient_name": "Neha Kulkarni",
+        "service_needed": "Pain Check-up",
+        "preferred_date": "2026-11-03",
+        "preferred_time_window": null,
+        "is_emergency": false
+      }
+    },
+    {
+      "id": "en-06",
+      "language": "en",
+      "text": "Rahul Verma here. Crown please, Monday ko, 4 pm.",
+      "expected": {
+        "patient_name": "Rahul Verma",
+        "service_needed": "Crowns & Bridges",
+        "preferred_date": "2026-11-09",
+        "preferred_time_window": "16:00-18:00",
+        "is_emergency": false
+      }
+    },
+    {
+      "id": "en-07",
+      "language": "en",
+      "text": "This is Sarah. Root canal on Sunday morning.",
+      "expected": {
+        "patient_name": "Sarah",
+        "service_needed": "Root Canal Treatment",
+        "preferred_date": "2026-11-08",
+        "preferred_time_window": "10:00-12:00",
+        "is_emergency": false
+      }
+    },
+    {
+      "id": "en-08",
+      "language": "en",
+      "text": "I want a checkup yesterday evening.",
+      "expected": {
+        "patient_name": null,
+        "service_needed": "Pain Check-up",
+        "preferred_date": "2026-11-02",
+        "preferred_time_window": "18:00-20:00",
+        "is_emergency": false
+      }
+    },
+    {
+      "id": "en-09",
+      "language": "en",
+      "text": "Name: Vikram Rao. Scaling & cleaning, 7 November, 12:00-14:00.",
+      "expected": {
+        "patient_name": "Vikram Rao",
+        "service_needed": "Scaling & Cleaning",
+        "preferred_date": "2026-11-07",
+        "preferred_time_window": "12:00-14:00",
+        "is_emergency": false
+      }
+    },
+    {
+      "id": "en-10",
+      "language": "en",
+      "text": "Hi, what are your clinic timings?",
+      "expected": {
+        "patient_name": null,
+        "service_needed": null,
+        "preferred_date": null,
+        "preferred_time_window": null,
+        "is_emergency": false
+      }
+    },
+    {
+      "id": "hinglish-01",
+      "language": "hinglish",
+      "text": "Rahul Verma, kal shaam ko root canal karna hai.",
+      "expected": {
+        "patient_name": "Rahul Verma",
+        "service_needed": "Root Canal Treatment",
+        "preferred_date": "2026-11-04",
+        "preferred_time_window": "18:00-20:00",
+        "is_emergency": false
+      }
+    },
+    {
+      "id": "hinglish-02",
+      "language": "hinglish",
+      "text": "Mera naam Priya hai, parso subah cleaning chahiye.",
+      "expected": {
+        "patient_name": "Priya",
+        "service_needed": "Scaling & Cleaning",
+        "preferred_date": "2026-11-05",
+        "preferred_time_window": "10:00-12:00",
+        "is_emergency": false
+      }
+    },
+    {
+      "id": "hinglish-03",
+      "language": "hinglish",
+      "text": "Amit, daant nikalna hai, 6 Nov dopahar.",
+      "expected": {
+        "patient_name": "Amit",
+        "service_needed": "Tooth Extraction",
+        "preferred_date": "2026-11-06",
+        "preferred_time_window": "12:00-14:00",
+        "is_emergency": false
+      }
+    },
+    {
+      "id": "hinglish-04",
+      "language": "hinglish",
+      "text": "Braces ke liye appointment chahiye Monday ko.",
+      "expected": {
+        "patient_name": null,
+        "service_needed": "Braces / Orthodontics",
+        "preferred_date": "2026-11-09",
+        "preferred_time_window": null,
+        "is_emergency": false
+      }
+    },
+    {
+      "id": "hinglish-05",
+      "language": "hinglish",
+      "text": "Crown lagwana hai, 10 Nov, evening.",
+      "expected": {
+        "patient_name": null,
+        "service_needed": "Crowns & Bridges",
+        "preferred_date": "2026-11-10",
+        "preferred_time_window": "18:00-20:00",
+        "is_emergency": false
+      }
+    },
+    {
+      "id": "hinglish-06",
+      "language": "hinglish",
+      "text": "Vikram here. Pain checkup today 4 pm.",
+      "expected": {
+        "patient_name": "Vikram",
+        "service_needed": "Pain Check-up",
+        "preferred_date": "2026-11-03",
+        "preferred_time_window": "16:00-18:00",
+        "is_emergency": false
+      }
+    },
+    {
+      "id": "hi-01",
+      "language": "hi",
+      "text": "मेरा नाम राहुल वर्मा है। कल सुबह रूट कैनाल करवाना है।",
+      "expected": {
+        "patient_name": "राहुल वर्मा",
+        "service_needed": "Root Canal Treatment",
+        "preferred_date": "2026-11-04",
+        "preferred_time_window": "10:00-12:00",
+        "is_emergency": false
+      }
+    },
+    {
+      "id": "hi-02",
+      "language": "hi",
+      "text": "प्रिया शर्मा, परसों दोपहर में सफाई करवानी है।",
+      "expected": {
+        "patient_name": "प्रिया शर्मा",
+        "service_needed": "Scaling & Cleaning",
+        "preferred_date": "2026-11-05",
+        "preferred_time_window": "12:00-14:00",
+        "is_emergency": false
+      }
+    },
+    {
+      "id": "hi-03",
+      "language": "hi",
+      "text": "मुझे दांत निकलवाना है, 7 नवंबर को शाम।",
+      "expected": {
+        "patient_name": null,
+        "service_needed": "Tooth Extraction",
+        "preferred_date": "2026-11-07",
+        "preferred_time_window": "18:00-20:00",
+        "is_emergency": false
+      }
+    },
+    {
+      "id": "hi-04",
+      "language": "hi",
+      "text": "अमित पटेल, ब्रेसेस के लिए सोमवार को अपॉइंटमेंट चाहिए।",
+      "expected": {
+        "patient_name": "अमित पटेल",
+        "service_needed": "Braces / Orthodontics",
+        "preferred_date": "2026-11-09",
+        "preferred_time_window": null,
+        "is_emergency": false
+      }
+    },
+    {
+      "id": "hi-05",
+      "language": "hi",
+      "text": "मेरा नाम नेहा है, क्राउन चाहिए, 10 नवंबर सुबह।",
+      "expected": {
+        "patient_name": "नेहा",
+        "service_needed": "Crowns & Bridges",
+        "preferred_date": "2026-11-10",
+        "preferred_time_window": "10:00-12:00",
+        "is_emergency": false
+      }
+    },
+    {
+      "id": "mr-01",
+      "language": "mr",
+      "text": "माझे नाव राहुल वर्मा आहे. उद्या सकाळी रूट कॅनाल करायचा आहे.",
+      "expected": {
+        "patient_name": "राहुल वर्मा",
+        "service_needed": "Root Canal Treatment",
+        "preferred_date": "2026-11-04",
+        "preferred_time_window": "10:00-12:00",
+        "is_emergency": false
+      }
+    },
+    {
+      "id": "mr-02",
+      "language": "mr",
+      "text": "प्रिया शर्मा, परवा दुपारी सफाई करायची आहे.",
+      "expected": {
+        "patient_name": "प्रिया शर्मा",
+        "service_needed": "Scaling & Cleaning",
+        "preferred_date": "2026-11-05",
+        "preferred_time_window": "12:00-14:00",
+        "is_emergency": false
+      }
+    },
+    {
+      "id": "mr-03",
+      "language": "mr",
+      "text": "मला दात काढायचा आहे, ७ नोव्हेंबरला संध्याकाळी.",
+      "expected": {
+        "patient_name": null,
+        "service_needed": "Tooth Extraction",
+        "preferred_date": "2026-11-07",
+        "preferred_time_window": "18:00-20:00",
+        "is_emergency": false
+      }
+    },
+    {
+      "id": "mr-04",
+      "language": "mr",
+      "text": "अमित पाटील, ब्रेसेससाठी सोमवारी अपॉइंटमेंट हवी आहे.",
+      "expected": {
+        "patient_name": "अमित पाटील",
+        "service_needed": "Braces / Orthodontics",
+        "preferred_date": "2026-11-09",
+        "preferred_time_window": null,
+        "is_emergency": false
+      }
+    },
+    {
+      "id": "mr-05",
+      "language": "mr",
+      "text": "माझे नाव नेहा आहे, क्राउन हवा आहे, १० नोव्हेंबर सकाळी.",
+      "expected": {
+        "patient_name": "नेहा",
+        "service_needed": "Crowns & Bridges",
+        "preferred_date": "2026-11-10",
+        "preferred_time_window": "10:00-12:00",
+        "is_emergency": false
+      }
+    },
+    {
+      "id": "em-en-01",
+      "language": "en",
+      "text": "I have severe tooth pain and bleeding, please help.",
+      "expected": {
+        "patient_name": null,
+        "service_needed": null,
+        "preferred_date": null,
+        "preferred_time_window": null,
+        "is_emergency": true
+      }
+    },
+    {
+      "id": "em-en-02",
+      "language": "en",
+      "text": "My tooth got knocked out in an accident.",
+      "expected": {
+        "patient_name": null,
+        "service_needed": null,
+        "preferred_date": null,
+        "preferred_time_window": null,
+        "is_emergency": true
+      }
+    },
+    {
+      "id": "em-hi-01",
+      "language": "hi",
+      "text": "दांत से खून आ रहा है और बहुत सूजन है।",
+      "expected": {
+        "patient_name": null,
+        "service_needed": null,
+        "preferred_date": null,
+        "preferred_time_window": null,
+        "is_emergency": true
+      }
+    },
+    {
+      "id": "em-hi-02",
+      "language": "hi",
+      "text": "दांत टूट गया है, बहुत दर्द है।",
+      "expected": {
+        "patient_name": null,
+        "service_needed": null,
+        "preferred_date": null,
+        "preferred_time_window": null,
+        "is_emergency": true
+      }
+    },
+    {
+      "id": "em-mr-01",
+      "language": "mr",
+      "text": "दात खूप दुखत आहे आणि सूज आली आहे.",
+      "expected": {
+        "patient_name": null,
+        "service_needed": null,
+        "preferred_date": null,
+        "preferred_time_window": null,
+        "is_emergency": true
+      }
+    },
+    {
+      "id": "em-hinglish-01",
+      "language": "hinglish",
+      "text": "Bahut dard hai aur sujan bhi hai.",
+      "expected": {
+        "patient_name": null,
+        "service_needed": null,
+        "preferred_date": null,
+        "preferred_time_window": null,
+        "is_emergency": true
+      }
+    }
+  ]
+}

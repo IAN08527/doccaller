@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+*.egg-info/
+dist/
+build/
+
+# Local state and secrets
+.env
+service_account.json
+callagent.json
+*service-account*.json
+gcp-credentials*.json
+*.db
+*.db-wal
+*.db-shm
+
+# Tooling caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/

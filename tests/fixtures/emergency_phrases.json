@@ -1,0 +1,32 @@
+{
+  "emergency": [
+    "I have severe pain in my tooth",
+    "There is heavy bleeding and swelling",
+    "my tooth was knocked out in an accident",
+    "I can't stop bleeding",
+    "My face is swollen badly after the accident",
+    "मुझे बहुत दर्द हो रहा है",
+    "खून आ रहा है और सूजन है",
+    "दांत टूट गया है",
+    "तेज़ दर्द है और सूजन भी",
+    "माझ्या दातात खूप वेदना आहे",
+    "रक्त येत आहे आणि सूज आहे",
+    "दात पडला आहे",
+    "दात तुटला आहे, खूप दुखत आहे",
+    "bahut dard ho raha hai",
+    "khoon aa raha hai",
+    "daant toot gaya, chot lagi",
+    "sujan hai aur bohot dard hai"
+  ],
+  "routine": [
+    "I need a cleaning next week",
+    "kal subah appointment chahiye",
+    "मुझे अगले हफ्ते जांच करवानी है",
+    "मला पुढच्या आठवड्यात तपासणी हवी आहे",
+    "What are your clinic hours?",
+    "I want to book a root canal for Friday",
+    "मुझे दांत में हल्का दर्द है, कल सुबह आना है",
+    "मला उद्या सकाळी तपासणी हवी आहे",
+    ""
+  ]
+}
