@@ -18,7 +18,7 @@ from app.models import (
     SessionState,
 )
 from app.reply_builder import Lang, ReplyBuilder, detect_language
-from app.validator import validate_fields
+from app.validator import FIELD_ORDER, ValidationResult, validate_fields
 
 _CONFIRM_EXACT = {
     "yes",
@@ -143,6 +143,7 @@ def handle_inbound(
         )
 
     new_fields = extracted or ExtractedFields()
+    prev_validation = validate_fields(session.fields, config, today=now.date())
 
     emergency_detected = emergency.is_emergency(text) or new_fields.is_emergency
     if emergency_detected and not current.fields.is_emergency:
@@ -169,6 +170,7 @@ def handle_inbound(
             )
         if intent == "edit":
             current.state = SessionState.COLLECTING
+            current.followup_rounds = 0
             return EngineResult(
                 session=current,
                 reply=builder.edit_prompt(lang),
@@ -182,6 +184,7 @@ def handle_inbound(
 
     if validation.is_valid:
         current.state = SessionState.AWAIT_CONFIRM
+        current.followup_rounds = 0
         return EngineResult(
             session=current,
             reply=builder.confirmation(validation.normalized, lang),
@@ -192,27 +195,57 @@ def handle_inbound(
     if current.state == SessionState.AWAIT_CONFIRM:
         # A correction left the request incomplete; ask again without spending a round.
         current.state = SessionState.COLLECTING
+        current.followup_rounds = 0
         return EngineResult(
             session=current,
             reply=builder.ask_missing(validation, lang),
             status=status_for(current),
         )
 
-    if current.followup_rounds >= config.followup.max_rounds:
-        current.state = SessionState.INCOMPLETE
-        return EngineResult(
-            session=current,
-            reply=builder.incomplete(lang),
-            status=status_for(current),
-        )
+    if _has_field_progress(prev_validation, validation, session.fields, current.fields):
+        current.followup_rounds = 0
+    else:
+        if current.followup_rounds >= config.followup.max_rounds:
+            current.state = SessionState.INCOMPLETE
+            return EngineResult(
+                session=current,
+                reply=builder.incomplete(lang),
+                status=status_for(current),
+            )
+        current.followup_rounds += 1
 
     current.state = SessionState.COLLECTING
-    current.followup_rounds += 1
     return EngineResult(
         session=current,
         reply=builder.ask_missing(validation, lang),
         status=status_for(current),
     )
+
+
+def _has_field_progress(
+    prev_validation: ValidationResult,
+    curr_validation: ValidationResult,
+    prev_fields: ExtractedFields,
+    curr_fields: ExtractedFields,
+) -> bool:
+    """Return True if newly valid or updated information was provided in this round."""
+    for field_name in FIELD_ORDER:
+        was_invalid_or_missing = (
+            field_name in prev_validation.missing or field_name in prev_validation.errors
+        )
+        is_now_valid = (
+            field_name not in curr_validation.missing and field_name not in curr_validation.errors
+        )
+        if was_invalid_or_missing and is_now_valid:
+            return True
+
+        if is_now_valid and not was_invalid_or_missing:
+            prev_val = getattr(prev_fields, field_name)
+            curr_val = getattr(curr_fields, field_name)
+            if curr_val is not None and curr_val != prev_val:
+                return True
+
+    return False
 
 
 def merge_fields(existing: ExtractedFields, new: ExtractedFields) -> ExtractedFields:

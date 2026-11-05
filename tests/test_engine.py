@@ -74,7 +74,7 @@ def test_details_accumulate_across_messages(config: AppConfig, now: datetime) ->
         extracted=ExtractedFields(patient_name="Rahul Verma"),
     )
     assert first.session.state == SessionState.COLLECTING
-    assert first.session.followup_rounds == 1
+    assert first.session.followup_rounds == 0
     assert "service" in first.reply.lower()
 
     second = handle_inbound(
@@ -86,7 +86,7 @@ def test_details_accumulate_across_messages(config: AppConfig, now: datetime) ->
     )
     assert second.session.fields.patient_name == "Rahul Verma"
     assert second.session.fields.service_needed == "Root Canal Treatment"
-    assert second.session.followup_rounds == 2
+    assert second.session.followup_rounds == 0
 
     third = handle_inbound(
         second.session,
@@ -99,7 +99,7 @@ def test_details_accumulate_across_messages(config: AppConfig, now: datetime) ->
         ),
     )
     assert third.session.state == SessionState.AWAIT_CONFIRM
-    assert third.session.followup_rounds == 2
+    assert third.session.followup_rounds == 0
 
 
 def test_three_followups_then_incomplete(config: AppConfig, now: datetime) -> None:
@@ -118,6 +118,60 @@ def test_three_followups_then_incomplete(config: AppConfig, now: datetime) -> No
     assert final.session.state == SessionState.INCOMPLETE
     assert final.status == LeadStatus.INCOMPLETE
     assert "saved" in final.reply.lower()
+
+
+def test_retry_counter_resets_on_field_progress(config: AppConfig, now: datetime) -> None:
+    session = start_missed_call(PHONE, config, now).session
+
+    # Fail 2 times without providing useful information
+    r1 = handle_inbound(session, make_message("hello", now, "m-1"), config, now)
+    assert r1.session.state == SessionState.COLLECTING
+    assert r1.session.followup_rounds == 1
+
+    r2 = handle_inbound(r1.session, make_message("who is this?", now, "m-2"), config, now)
+    assert r2.session.state == SessionState.COLLECTING
+    assert r2.session.followup_rounds == 2
+
+    # Give name -> progress made -> counter resets to 0!
+    r3 = handle_inbound(
+        r2.session,
+        make_message("My name is Ian", now, "m-3"),
+        config,
+        now,
+        extracted=ExtractedFields(patient_name="Ian"),
+    )
+    assert r3.session.state == SessionState.COLLECTING
+    assert r3.session.followup_rounds == 0
+
+    # Fail 2 more times
+    r4 = handle_inbound(r3.session, make_message("uhh", now, "m-4"), config, now)
+    assert r4.session.followup_rounds == 1
+
+    r5 = handle_inbound(r4.session, make_message("what?", now, "m-5"), config, now)
+    assert r5.session.followup_rounds == 2
+
+    # Give service -> progress made -> counter resets to 0 again!
+    r6 = handle_inbound(
+        r5.session,
+        make_message("Root canal", now, "m-6"),
+        config,
+        now,
+        extracted=ExtractedFields(service_needed="root canal"),
+    )
+    assert r6.session.state == SessionState.COLLECTING
+    assert r6.session.followup_rounds == 0
+
+    # Now fail 3 times consecutively without progress -> transitions to INCOMPLETE on 4th
+    s = r6.session
+    for i in range(3):
+        res = handle_inbound(s, make_message("idk", now, f"fail-{i}"), config, now)
+        assert res.session.state == SessionState.COLLECTING
+        s = res.session
+    assert s.followup_rounds == 3
+
+    final = handle_inbound(s, make_message("still no idea", now, "fail-final"), config, now)
+    assert final.session.state == SessionState.INCOMPLETE
+    assert final.status == LeadStatus.INCOMPLETE
 
 
 def test_emergency_keyword_flags_urgent(config: AppConfig, now: datetime) -> None:
